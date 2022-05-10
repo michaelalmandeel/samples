@@ -17,7 +17,7 @@ class ModularBase64Converter
     {
         let intArray = new Array(Uint8Array);
 
-        for(let index = 0; index < i.length*8; index++)
+        for(let index = 0; index < a.length*6; index++)
         {
             intArray[index/8].at((index+8)%8) = a[index/6].at((index+6)%6);
         }
