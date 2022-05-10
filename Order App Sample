@@ -14,3 +14,6 @@ they can search for it to save even more time, which typically means a better ex
 
 The frameworks used were ionic and angular. Message passing was implemented with rxjs subjects hosted within a singleton service, and firebase was used to host the db.
 Given that this is implemented within another singleton service, switching to a different host such as aws or google cloud would be trivial.
+
+
+
