@@ -1,3 +1,16 @@
 You can see a sample of my mobile ordering app at: 
 
 https://shopping-10043.web.app/
+
+I solely designed and implemented this app in order to address what I saw as shortcomings in current digital menu and ordering applications for mobile devices. 
+The excessive scrolling required to navigate to various parts of the menu is a significant burden to place on a customer that you would rather impress than frustrate.
+
+I chose to provide two viewing modes(gallery and list) that use accordians to reduce overall page height by hiding functionality behind them that would otherwise
+waste precious screen real estate. To further reduce page height, each screen consists of a distinct section of the menu, rather than all of them, which seems to be 
+the norm.
+
+To further streamline the typical browse and order routine, I added a search bar , accessible from the side menu. This way, if a customer knows what they want already,
+they can search for it to save even more time, which typically means a better experience overall.
+
+The frameworks used were ionic and angular. Message passing was implemented with rxjs subjects hosted within a singleton service, and firebase was used to host the db.
+Given that this is implemented within another singleton service, switching to a different host such as aws or google cloud would be trivial.
