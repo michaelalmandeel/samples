@@ -12,11 +12,11 @@ class ipv4Fragment
     public static void fragment(int mtu,unsigned char * frame_hdr,unsigned char * datagram,unsigned char * buffer)
     {
         unsigned short int fragmentSize = (mtu-(frame_hdr_len+datagram_hdr_len)) - (mtu-(frame_hdr_len+datagram_hdr_len))%8; 
-        unsigned short int numFragments = ( (sizeof(datagram)-datagram_hdr_len)/fragmentSize ) + ( (sizeof(datagram)-datagram_hdr_len)%fragmentSize > 0 ) ? 1 : 0);
-        unsigned short int lastFragmentSize = ( (sizeof(datagram)-datagram_hdr_len)%fragmentSize > 0 ) ? (sizeof(datagram)-datagram_hdr_len)%fragmentSize : fragmentSize);
+        unsigned short int totalLength = datagram_hdr_len+fragmentSize;
+        unsigned short int numFragments = ( (totalLength-datagram_hdr_len)/fragmentSize ) + ( (totalLength-datagram_hdr_len)%fragmentSize > 0 ) ? 1 : 0);
+        unsigned short int lastFragmentSize = ( (totalLength-datagram_hdr_len)%fragmentSize > 0 ) ? (totalLength-datagram_hdr_len)%fragmentSize : fragmentSize);
         unsigned short int bufferIndex = 0;
         unsigned short int fragmentOffsetVal = (((unsigned short int)datagram[frame_hdr_len+fragment_offset])*256 + ((unsigned short int)datagram[frame_hdr_len+fragment_offset+1])&(0x1FFF))*8;
-        unsigned short int totalLength = datagram_hdr_len+fragmentSize;
         unsigned char * header = new unsigned char[frame_hdr_len+datagram_hdr_len+fragmentSize];
        
         memmove( header , frame_hdr , frame_hdr_len );//append frame header
