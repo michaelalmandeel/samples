@@ -2,7 +2,7 @@
   {//this function calculates the height of a scrolling list to avoid showing partial elements(better look). 
    //each element has a fixed height header, variable height content and n-1 bottom margins. 
    //we ensure our calculated height is < max height. the value is to be returned to a style binding.
-   // contentList and headerList are querylists of elementrefs
+   // this.listItems refers to a querylist of elementrefs that represent the elements in the list
 
     let totalContentHeight = 0;//to calculate running total of content height;
     let previousHeight = 0;//used to record the previous running total
