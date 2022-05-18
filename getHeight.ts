@@ -1,0 +1,26 @@
+  setHeight():void
+  {//this function calculates the height of a scrolling list to avoid showing partial elements(better look). 
+   //each element has a fixed height header, variable height content and n-1 bottom margins. 
+   //we ensure our calculated height is < max height. the value is to be returned to a style binding.
+   // contentList and headerList are querylists of elementrefs
+
+    let totalContentHeight = 0;//to calculate running total of content height;
+    let previousHeight = 0;//used to record the previous running total
+    let marginHeight = 10;
+    let maxHeight = 480;
+    let count = 0;
+
+    for(let i = 0; i < this.listItems.length; i++)// for each content element
+    {
+      count++;
+      previousHeight = totalContentHeight;//record total before increase
+      totalContentHeight += this.listItems.get(i).nativeElement.scrollHeight;// calculate running total of content height
+
+      if( (totalContentHeight+((i-1)*marginHeight)) > maxHeight )//max height exceeded
+      { 
+        totalContentHeight = previousHeight;
+        break;
+      }
+    }
+  this.myHeight = (totalContentHeight+(marginHeight*(count-1)))+"px";//this.myHeight determines height style binding
+  }
