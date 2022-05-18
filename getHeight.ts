@@ -16,7 +16,7 @@
       previousHeight = totalContentHeight;//record total before increase
       totalContentHeight += this.listItems.get(i).nativeElement.scrollHeight;// calculate running total of content height
 
-      if( (totalContentHeight+((i-1)*marginHeight)) > maxHeight )//max height exceeded
+      if( (totalContentHeight+(i*marginHeight)) > maxHeight )//max height exceeded
       { 
         totalContentHeight = previousHeight;
         break;
