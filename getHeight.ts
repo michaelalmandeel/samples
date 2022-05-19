@@ -12,15 +12,16 @@
 
     for(let i = 0; i < this.listItems.length; i++)// for each content element
     {
-      count++;
       previousHeight = totalContentHeight;//record total before increase
       totalContentHeight += this.listItems.get(i).nativeElement.scrollHeight;// calculate running total of content height
 
       if( (totalContentHeight+(i*marginHeight)) > maxHeight )//max height exceeded
       { 
         totalContentHeight = previousHeight;
+        count++;
         break;
       }
+      count++;
     }
   this.myHeight = (totalContentHeight+(marginHeight*(count-1)))+"px";//this.myHeight determines height style binding
   }
