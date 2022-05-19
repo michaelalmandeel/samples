@@ -22,5 +22,6 @@
       }
       count++;
     }
+
   this.myHeight = (totalContentHeight+(count > 0 ? (marginHeight*(count-1)) : 0 ) )+"px";//this.myHeight determines height style binding
   }
