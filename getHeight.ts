@@ -17,11 +17,10 @@
 
       if( (totalContentHeight+(i*marginHeight)) > maxHeight )//max height exceeded
       { 
-        totalContentHeight = previousHeight;
+        totalContentHeight = (i === 0 ? totalContentHeight : previousHeight);
         break;
       }
       count++;
     }
-
   this.myHeight = (totalContentHeight+(count > 0 ? (marginHeight*(count-1)) : 0 ) )+"px";//this.myHeight determines height style binding
   }
