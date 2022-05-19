@@ -24,6 +24,6 @@
       numElements++;
     }
 
-  this.myHeight = (totalContentHeight+(numElements>0 ? (marginHeight*(numElements-1)):0))+"px";//this.myHeight determines height style binding
+  this.myHeight = (totalContentHeight+(marginHeight*numElements))+"px";//this.myHeight determines height style binding
 
   }
