@@ -7,7 +7,7 @@
     let totalContentHeight:number = 0;//to calculate running total of content height;
     let previousHeight:number = 0;//used to record the previous running total
     let marginHeight:number = 10;
-    let maxHeight:number = 480;
+    let maxHeight:number = 450;
     let numElements:number = 0;
 
     for(let i = 0; i < this.listItems.length; i++)// for each content element
