@@ -20,6 +20,7 @@
         totalContentHeight = (i === 0 ? maxHeight : previousHeight);//height is previous height if more than one item,  maxheight otherwise
         break;
       }
+      
       numElements++;
     }
 
