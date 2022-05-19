@@ -1,6 +1,6 @@
   setHeight():void
   {//this function calculates the height of a scrolling list to avoid showing partial elements(better look). 
-   //each element has a fixed height header, variable height content and there are n-1 bottom margins for n elements. 
+   //each element has a fixed height header, variable height content and a bottom margin. 
    //we ensure our calculated height is < max height. the value is to be returned to a style binding.
    // this.listItems refers to a querylist of elementrefs that represent the elements in the list
 
