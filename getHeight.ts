@@ -8,7 +8,7 @@
     let previousHeight = 0;//used to record the previous running total
     let marginHeight = 10;
     let maxHeight = 480;
-    let count = 0;
+    let numElements = 0;
 
     for(let i = 0; i < this.listItems.length; i++)// for each content element
     {
@@ -20,7 +20,7 @@
         totalContentHeight = (i === 0 ? totalContentHeight : previousHeight);
         break;
       }
-      count++;
+      numElements++;
     }
-  this.myHeight = (totalContentHeight+(count > 0 ? (marginHeight*(count-1)) : 0 ) )+"px";//this.myHeight determines height style binding
+  this.myHeight = (totalContentHeight+(count > 0 ? (marginHeight*(numElements-1)) : 0 ) )+"px";//this.myHeight determines height style binding
   }
