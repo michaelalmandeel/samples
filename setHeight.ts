@@ -32,5 +32,4 @@
   // with setTimeout(() => this.setHeight()) in ngAfterViewInit().
   // this pushes the function onto the event queue behind the current change-detection_dependency-update code,
   // so the correct value for this.myHeight is recorded and reflected in rendering after the next change-detection_dependency-update cycle.
-     tthe subscription to 
   }
