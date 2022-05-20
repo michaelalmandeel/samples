@@ -43,6 +43,6 @@ class ipv4Fragment
         memmove( buffer+((bufferIndex)*(frame_hdr_len+datagram_hdr_len+fragmentSize))+frame_hdr_len+datagram_hdr_len , datagram+datagram_hdr_len+((numFragments-1)*fragmentSize) , lastFragmentSize);//copy appropriate segment of datagram payload to the new datagram
         memmove( buffer+(bufferIndex*(frame_hdr_len+datagram_hdr_len+fragmentSize)) , header , frame_hdr_len+datagram_hdr_len );
         delete header;
-        return;
+        return 1;
     }
 }
