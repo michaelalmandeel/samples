@@ -4,7 +4,7 @@
    //we ensure our calculated height is < max height. the value is to be propagated to a style binding.
    // this.listItems refers to a querylist of elementrefs that represent the elements in the list
 
-    let totalContentHeight:number = 0;//to calculate running total of content height;
+    let totalContentHeight:number = 0;//used to record the running total of content heights
     let previousHeight:number = 0;//used to record the previous running total
     let marginHeight:number = 10;
     let maxHeight:number = 400;
