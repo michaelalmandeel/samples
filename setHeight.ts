@@ -29,6 +29,6 @@
   // this.myHeight is the template expression of the style binding. returning this value directly from the function to this expression causes a race condition,
   // as the elements of the QueryList are not yet rendered when their properties are accessed, causing unreliable values(0) for height.
   // a nessecary condition of using this method is that one must subscribe to myQueryList.changes with setTimeout(() => this.setHeight()),
-  // which pushes the function onto the event queue behind the current change-detection_dependencie-update code,
-  // so the correct value for this.myHeight is recorded and reflected in rendering after the next change-detection_dependencie-update cycle.
+  // which pushes the function onto the event queue behind the current change-detection_dependency-update code,
+  // so the correct value for this.myHeight is recorded and reflected in rendering after the next change-detection_dependency-update cycle.
   }
