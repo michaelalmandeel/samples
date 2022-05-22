@@ -9,7 +9,7 @@ class ipv4Fragment
     private static unsigned short int fragment_offset = 6;
     
     
-    public static void fragment(int mtu,unsigned char * frame_hdr,unsigned char * datagram,unsigned char * buffer)
+    public static int fragment(int mtu,unsigned char * frame_hdr,unsigned char * datagram,unsigned char * buffer)
     {
         unsigned short int fragmentSize = (mtu-(frame_hdr_len+datagram_hdr_len)) - (mtu-(frame_hdr_len+datagram_hdr_len))%8; 
         unsigned short int srcTotalLength = 0;
@@ -22,6 +22,7 @@ class ipv4Fragment
         unsigned short int fragmentOffsetVal = (((unsigned short int)datagram[frame_hdr_len+fragment_offset])*256 + ((unsigned short int)datagram[frame_hdr_len+fragment_offset+1])&(0x1FFF))*8;
         unsigned char * header = new unsigned char[frame_hdr_len+datagram_hdr_len+fragmentSize];
        
+        try{
         memmove( header , frame_hdr , frame_hdr_len );//append frame header
         memmove( header+frame_hdr_len , datagram , datagram_hdr_len );//append ip header
         memmove( header+frame_hdr_len+total_length_offset+1 , (unsigned char *)&totalLength , 1);//set total length(lower byte)
@@ -42,7 +43,9 @@ class ipv4Fragment
         header[frame_hdr_len+fragment_offset+1] = (unsigned char)(((fragmentOffsetVal+(fragmentSize*(numFragments-1)))/8)&00FF);//set second byte of fragment offset
         memmove( buffer+((bufferIndex)*(frame_hdr_len+datagram_hdr_len+fragmentSize))+frame_hdr_len+datagram_hdr_len , datagram+datagram_hdr_len+((numFragments-1)*fragmentSize) , lastFragmentSize);//copy appropriate segment of datagram payload to the new datagram
         memmove( buffer+(bufferIndex*(frame_hdr_len+datagram_hdr_len+fragmentSize)) , header , frame_hdr_len+datagram_hdr_len );
+        }
+        catch(){delete header;return -1;}
         delete header;
-        return;
+        return 1;
     }
 }
