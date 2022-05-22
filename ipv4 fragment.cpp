@@ -1,5 +1,5 @@
 class ipv4Fragment
-{
+{//this function implements fragmentation on routers with little endian architecture
     #include <string.h>
 
     private static unsigned short int frame_hdr_len = 14;
