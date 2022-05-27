@@ -10,7 +10,7 @@ class Base64Converter
 
         for(let index = 0; index < sizeof(i)*8; index++)
         {
-            stringArray[index/6][(index+6)%6] = i[index/8][(index+8)%8];
+            charArray[index/6][(index+6)%6] = i[index/8][(index+8)%8];
         }
 
         return charArray;
