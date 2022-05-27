@@ -8,7 +8,7 @@ class Base64Converter
     {
         charArray = new char[sizeof(i)*8/6];
 
-        for(let index = 0; index < sizeof(i)*8; index++)
+        for(int index = 0; index < sizeof(i)*8; index++)
         {
             charArray[index/6][(index+6)%6] = i[index/8][(index+8)%8];
         }
@@ -20,7 +20,7 @@ class Base64Converter
     {
         intArray = new uint8_t[sizeof(a)*6/8];
 
-        for(let index = 0; index < sizeof(a)*6; index++)
+        for(int index = 0; index < sizeof(a)*6; index++)
         {
             intArray[index/8][(index+8)%8] = a[index/6][(index+6)%6];
         }
