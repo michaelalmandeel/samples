@@ -3,7 +3,7 @@
 
 class Base64Converter
 {
-    char[] computeItoA(uint8_t[] i)//convert byte array to an array of base 64 characters using modular arithmatic to compute the indexes of the corrosponding entries 
+    unsigned char[] computeItoA(uint8_t[] i)//convert byte array to an array of base 64 characters using modular arithmatic to compute the indexes of the corrosponding entries 
     // note that these functions are inverses of eachother
     {
         charArray = new char[sizeof(i)*8/6];
@@ -16,7 +16,7 @@ class Base64Converter
         return charArray;
     }
 
-    uint8_t[] computeAtoI(char[] a)//convert array of base 64 characters to byte array using modular arithmatic to compute the indexes of the corrosponding entries 
+    uint8_t[] computeAtoI(unsigned char[] a)//convert array of base 64 characters to byte array using modular arithmatic to compute the indexes of the corrosponding entries 
     {
         intArray = new uint8_t[sizeof(a)*6/8];
 
