@@ -1,4 +1,3 @@
-#include <string>
 #include <cstdint>
 
 class Base64Converter
