@@ -92,7 +92,7 @@ int main(int argc, char* argv[])
     uint16_t buffer_offset = 0 ;
     uint32_t shared_buffer_length = 0 ;
 
-    printf("consumer: producer started...\n");
+    printf("consumer: consumer started...\n");
     for(int i = 0; i < argc; i++){ printf("consumer: argv entry %d: %s\n",i,argv[i]); }
 
     int search_index = 2 ; //start searching argv at the first global data symbol
