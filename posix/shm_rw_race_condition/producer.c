@@ -60,7 +60,7 @@ int producer_race_cond(uint32_t last_snap , uint32_t now_snap , uint16_t buffer_
     uint16_t counter_1 = *((uint16_t *)(&now_snap)) ;
     uint16_t out_1 = *(((uint16_t *)(&now_snap))+1) ;
 
-    counter_0++ ;
+    counter_1-- ;
 
     uint16_t count_moved = counter_0 - counter_1 ;
 
