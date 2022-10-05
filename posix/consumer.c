@@ -63,7 +63,7 @@ int consumer_race_cond(uint32_t last_snap , uint32_t now_snap , uint16_t buffer_
 
     counter_1++ ;
 
-    uint16_t count_moved = counter_0 - counter_1 ;
+    uint16_t count_moved = counter_1 - counter_0 ;
 
     if( ((in_0+count_moved)%buffer_size) == in_1 ){ return 0 ; }
    
