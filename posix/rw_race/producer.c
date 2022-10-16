@@ -79,9 +79,6 @@ int main(int argc, char* argv[])
 
     printf("producer: mapped shm buffer to local address space, ptr = %p\n" , shm_ptr);
 
-    uint32_t last_snapshot = 0 ; // these are used to detect when a race condition has occurred 
-    uint32_t current_snapshot = 0 ;
-
     item next_produced ;
 
     while(1)
