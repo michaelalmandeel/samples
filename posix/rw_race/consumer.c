@@ -76,9 +76,6 @@ int main(int argc, char* argv[])
 
     printf("consumer: mapped shm buffer to local address space\n");
 
-    uint32_t last_snapshot = 0 ; // these are used to detect when a race condition has occurred 
-    uint32_t current_snapshot = 0 ;
-
     item next_consumed ;
 
     while(1)
