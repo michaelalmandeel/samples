@@ -1,0 +1,325 @@
+
+<ion-app style="background-color:#f4f5f8">
+
+  <ion-header>
+    <ion-toolbar color="tertiary" >
+
+      <ion-title>Attendence Management</ion-title>
+      <ion-buttons slot="end">
+        <ion-button style="margin-right:10px" (click)="openModal()" fill="solid" color="darkgrey"  >
+          <ion-text>
+            console
+          </ion-text>
+        </ion-button>
+      </ion-buttons>
+
+    </ion-toolbar>
+  </ion-header>
+
+  <app-modal-component (onClose)="closeModal()" [log]="consoleHistory" *ngIf="modalIsOpen" ></app-modal-component>
+
+  <ion-content color="light" >
+   <div class="grid">
+      <ion-card class="card" > 
+        <ion-card-header color="darkgrey">
+          <ion-card-title >Students</ion-card-title>
+        </ion-card-header>
+
+        <ion-accordion-group style="margin:20px;" >
+          <ion-accordion toggle-icon="caret-down" >
+            <ion-item slot="header"  color="medium"  >
+              <ion-label style="text-align: center;font-weight: 650;">Add Student</ion-label>
+            </ion-item>              
+            <ion-item slot="content" color="gainsboro" lines="none"  >
+              <ion-grid>
+                <ion-row>
+                  <ion-col>
+                  <ion-item >
+                    <ion-label  position="stacked">Student Name</ion-label>
+                    <ion-input #var1 (ionChange)="setAddStudentName($event.target.value)" type="text" maxlength="30"></ion-input>
+                  </ion-item>
+                </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col>
+                  <ion-item  >
+                    <ion-label position="stacked">Student Id</ion-label>
+                    <ion-input #var2 (ionChange)="setAddStudentId($event.target.value)" type="text" maxlength="10"></ion-input>
+                  </ion-item>
+                </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col>
+                  <ion-button color="danger"  expand="full" style="height:40px;" (click)="addStudent(addStudentData);clearInputs([var1,var2]);">
+                    <ion-icon  name="caret-up"></ion-icon>
+                  </ion-button>
+                </ion-col>
+                </ion-row>
+                </ion-grid>
+            </ion-item>
+          </ion-accordion>
+         </ion-accordion-group>      
+         <ion-accordion-group style="margin:20px;" >
+          <ion-accordion toggle-icon="caret-down" >
+            <ion-item slot="header"  color="medium"  >
+              <ion-label style="text-align: center;font-weight: 650;">Analytics</ion-label>
+            </ion-item>              
+            <ion-item slot="content" lines="none" color="gainsboro" style="pointer-events: none;" [style.height]="(studentAnalytics === '1' ? '100%' : '68px')" >
+              <ion-grid #grid >
+                <ion-row>
+                  <ion-col >
+                    <ion-item style="pointer-events: auto;">
+                    <ion-select  placeholder="Select Query Type" (ionChange)="setStudentAnalytics($event.target.value)" style="max-width: 100%; width: 100%" interface="popover">
+                      <ion-select-option value="1">Attendence Date-Date</ion-select-option>
+                     </ion-select>
+                    </ion-item>
+                  </ion-col>
+                </ion-row>
+
+
+                   <ion-row>
+                      <ion-col>
+                        <ion-item style="pointer-events: auto;" >
+                            <ion-label position="stacked" >Student Id</ion-label>
+                            <ion-input #var3 (ionChange)="setStudentAttendanceId($event.target.value)" type="text" maxlength="10"></ion-input>
+                        </ion-item>
+                      </ion-col>
+                   </ion-row>
+                   <ion-row>
+                    <ion-col>
+                      <ion-item style="pointer-events: auto;" >
+                          <ion-label position="stacked">Start Date</ion-label>
+                          <ion-input #var14 (ionChange)="setStudentAttendanceStartDate($event.target.value)" type="text" maxlength="10" placeholder="DD/MM/YYYY"></ion-input>
+                      </ion-item>
+                    </ion-col>
+                 </ion-row>
+                 <ion-row>
+                  <ion-col>
+                    <ion-item style="pointer-events: auto;">
+                        <ion-label position="stacked">End Date</ion-label>
+                        <ion-input #var15 (ionChange)="setStudentAttendanceEndDate($event.target.value)" type="text" placeholder="DD/MM/YYYY" maxlength="10"></ion-input>
+                    </ion-item>
+                  </ion-col>
+               </ion-row>
+                   <ion-row>
+                      <ion-col>
+                        <div style="pointer-events: auto;">
+                        <ion-button color="danger"  expand="full" style="height:40px;" (click)="getStudentAttendence(studentAttendenceData);clearInputs([var3,var14,var15]);" >
+                          <ion-icon name="caret-down" color="light"></ion-icon>
+                        </ion-button>
+                        </div>
+                      </ion-col>
+                    </ion-row>
+
+
+
+                </ion-grid>
+            </ion-item>
+          </ion-accordion>
+         </ion-accordion-group>    
+
+      </ion-card>
+
+      <ion-card class="card" > 
+        <ion-card-header color="darkgrey">
+          <ion-card-title>Classes</ion-card-title>
+        </ion-card-header>
+
+        <ion-accordion-group style="margin:20px;" >
+          <ion-accordion toggle-icon="caret-down" >
+            <ion-item slot="header"  color="medium"  >
+              <ion-label style="text-align: center;font-weight: 650;">Add Class</ion-label>
+            </ion-item>              
+            <ion-item slot="content" color="gainsboro" lines="none">
+              <ion-grid>
+                <ion-row>
+                  <ion-col>
+                  <ion-item  >
+                    <ion-label position="stacked">Class Name</ion-label>
+                    <ion-input #var4 (ionChange)="setAddClassName($event.target.value)" type="text" maxlength="30"></ion-input>
+                  </ion-item>
+                </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col>
+                  <ion-item  >
+                    <ion-label position="stacked">Class Section</ion-label>
+                    <ion-input #var5 (ionChange)="setAddClassSection($event.target.value)" type="text" maxlength="2"></ion-input>
+                  </ion-item>
+                </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col>
+                  <ion-item  >
+                    <ion-label position="stacked">Instructor Email</ion-label>
+                    <ion-input #var6 (ionChange)="setAddClassEmail($event.target.value)" type="text" maxlength="30"></ion-input>
+                  </ion-item>
+                </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col>
+                  <ion-item  >
+                    <ion-label position="stacked">Semester</ion-label>
+                    <ion-input #var7 placeholder="e.g. spring2020" (ionChange)="setAddClassSemester($event.target.value)" type="text" maxlength="10"></ion-input>
+                  </ion-item>
+                </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col size="8">
+                  <ion-item  >
+                    <ion-label position="stacked">Add Student Id's</ion-label>
+                    <ion-input  #var8 type="text" maxlength="10"></ion-input>
+                  </ion-item>
+                </ion-col>
+                <ion-col size="2" class="ion-align-self-center">
+                  <ion-button  (click)="setStudentIds(var8.value,var8);">
+                    <ion-icon name="add"></ion-icon>
+                  </ion-button>
+                </ion-col>
+                <ion-col size="2" class="ion-align-self-center">
+                  <ion-button (click)="studentIds.shift()">
+                    <ion-icon name="remove"></ion-icon>
+                  </ion-button>
+                </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col>
+                    <ion-list style="min-height:120px;max-height:120px;overflow-y:scroll;padding:0px;">
+                      <ion-item *ngFor="let studentid of studentIds" lines="full" color="light">
+                        <ion-text >
+                        <ion-label style="font-size:13px;">{{studentid}}</ion-label>
+                      </ion-text>
+                      </ion-item>
+                    </ion-list>
+                </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col>
+                  <ion-button color="danger"  expand="full" style="height:40px;" (click)="setAddClassStudents(studentIds);addClass(addClassData);clearInputs([var4,var5,var6,var7,var8]);">
+                    <ion-icon color="light" name="caret-up"></ion-icon>
+                  </ion-button>
+                </ion-col>
+                </ion-row>
+                </ion-grid>
+            </ion-item>
+          </ion-accordion>
+         </ion-accordion-group>  
+       <ion-accordion-group style="margin:20px;" >
+        <ion-accordion toggle-icon="caret-down" >
+          <ion-item slot="header"  color="medium"  >
+            <ion-label style="text-align: center;font-weight: 650;">Analytics</ion-label>
+          </ion-item>              
+          <ion-item slot="content" color="gainsboro" lines="none" style="pointer-events: none;" [style.height]="(classAnalytics === '1' ? '100%' : '68px')" >
+            <ion-grid>
+              <ion-row>
+                <ion-col >
+                  <ion-item style="pointer-events: auto;">
+                  <ion-select  placeholder="Select Query Type" (ionChange)="setClassAnalytics($event.target.value)" style="max-width: 100%; width: 100%" interface="popover">
+                    <ion-select-option value="1">Attendence Date-Date</ion-select-option>
+                   </ion-select>
+                  </ion-item>
+                </ion-col>
+              </ion-row>
+
+                  <ion-row>
+                    <ion-col>
+                    <ion-item style="pointer-events: auto;" >
+                      <ion-label position="stacked">Class Name</ion-label>
+                      <ion-input #var9 (ionChange)="setClassAttendenceName($event.target.value)" type="text" maxlength="30"></ion-input>
+                    </ion-item>
+                  </ion-col>
+                  </ion-row>
+                  <ion-row>
+                    <ion-col>
+                    <ion-item style="pointer-events: auto;">
+                      <ion-label position="stacked">Class Section</ion-label>
+                      <ion-input #var10 (ionChange)="setClassAttendenceSection($event.target.value)" type="text" maxlength="2"></ion-input>
+                    </ion-item>
+                  </ion-col>
+                  </ion-row>
+                  <ion-row>
+                    <ion-col>
+                      <ion-item style="pointer-events: auto;" >
+                        <ion-label position="stacked">Semester</ion-label>
+                        <ion-input #var11 placeholder="e.g. spring2020" (ionChange)="setClassAttendenceSemester($event.target.value)" type="text" maxlength="10"></ion-input>
+                      </ion-item>
+                    </ion-col>
+                  </ion-row>
+                  <ion-row>
+                    <ion-col>
+                      <ion-item style="pointer-events: auto;">
+                          <ion-label position="stacked">Start Date</ion-label>
+                          <ion-input #var16 (ionChange)="setClassAttendanceStartDate($event.target.value)" type="text" maxlength="10" placeholder="DD/MM/YYYY"></ion-input>
+                      </ion-item>
+                    </ion-col>
+                 </ion-row>
+                 <ion-row>
+                  <ion-col>
+                    <ion-item style="pointer-events: auto;">
+                        <ion-label position="stacked">End Date</ion-label>
+                        <ion-input #var17 (ionChange)="setClassAttendanceEndDate($event.target.value)" type="text" placeholder="DD/MM/YYYY" maxlength="10"></ion-input>
+                    </ion-item>
+                  </ion-col>
+               </ion-row>
+                  <ion-row>
+                    <ion-col>
+                      <div style="pointer-events: auto;">
+                      <ion-button color="danger"  expand="full" style="height:40px;" (click)="getClassAttendence(classAttendenceData);clearInputs([var9,var10,var11,var16,var17]);">
+                        <ion-icon name="caret-down"></ion-icon>
+                      </ion-button>
+                    </div>
+                    </ion-col>
+                  </ion-row>
+
+              </ion-grid>
+          </ion-item>
+        </ion-accordion>
+       </ion-accordion-group>  
+      </ion-card>
+
+        <ion-card class="card" > 
+          <ion-card-header color="darkgrey">
+            <ion-card-title>Instructors</ion-card-title>
+          </ion-card-header>
+  
+         <ion-accordion-group style="margin:20px;" >
+          <ion-accordion toggle-icon="caret-down" >
+            <ion-item slot="header"  color="medium"  >
+              <ion-label style="text-align: center;font-weight: 650;">Add Instructor</ion-label>
+            </ion-item>              
+            <ion-item slot="content" lines="none" color="gainsboro" >
+              <ion-grid>
+                <ion-row>
+                  <ion-col>
+                  <ion-item >
+                    <ion-label position="stacked">Instructor Email</ion-label>
+                    <ion-input #var12 (ionChange)="setAddInstructorEmail($event.target.value)" type="text" maxlength="30"></ion-input>
+                  </ion-item>
+                </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col>
+                  <ion-item  >
+                    <ion-label position="stacked">Password</ion-label>
+                    <ion-input #var13 (ionChange)="setAddInstructorPassword($event.target.value)" type="text" maxlength="30"></ion-input>
+                  </ion-item>
+                </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col>
+                  <ion-button color="danger"  expand="full" style="height:40px;" (click)="addInstructor(addInstructorData);clearInputs([var12,var13]);">
+                    <ion-icon color="light" name="caret-up"></ion-icon>
+                  </ion-button>
+                </ion-col>
+                </ion-row>
+                </ion-grid>
+            </ion-item>
+          </ion-accordion>
+         </ion-accordion-group>         
+        </ion-card>
+
+        </div>
+
+  </ion-content>
+
+</ion-app>

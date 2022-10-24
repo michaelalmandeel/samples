@@ -1,0 +1,75 @@
+<ion-app>
+
+  <ion-header>
+    <ion-toolbar color="tertiary" >
+      <ion-title>Attendence App</ion-title>
+      <ion-buttons slot="end">
+        <ion-button fill="solid" style="margin-right:10px" (click)="markAll()" color="darkgrey">
+          <ion-text >mark all</ion-text>
+        </ion-button>
+        <ion-button fill="solid" style="margin-right:10px" (click)="recordAttendence()" color="darkgrey">
+          <ion-text >upload</ion-text>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-popover trigger="trigger-item"  alignment="center" size="cover" #popover >
+    <ng-template>
+      <ion-content >
+        <ion-list style="padding-top:0px;padding-bottom:0px;padding-left:0px;padding-right:0px;background-color:#494a50;" >
+          <ion-item style="margin-bottom:8px;--inner-padding-end:15px;--inner-padding-start:0px" >
+            <ion-input #input1  (ionChange)="setEmail($event)"  placeholder="Email" maxlength="40" style="--background:gainsboro;margin:25px;margin-left:5px;margin-right:0px;--padding-start:10px;">
+            </ion-input>
+            <ion-input #input2  (ionChange)="setPassword($event)"   type="password" placeholder="Password" maxlength="20" style="--background:gainsboro;margin-left:15px;margin-right:15px;--padding-start:10px;">
+            </ion-input>
+            <ion-button size="default" color="danger" (click)="(isLoggedIn ? logOut([input1,input2]) : logIn())" >{{(isLoggedIn ? 'logout' : 'login')}}</ion-button>
+          </ion-item>
+          <ion-item button *ngFor="let cls of myClasses;index as i;" lines="full" (click)="onClassSelect(i,popover)" style="margin:8px;margin-top:0px;">
+            <ion-label>
+              <ion-text color="darkgrey">
+               <h2 style="font-size:17px;font-weight: 550;">{{cls.className}}</h2>
+              </ion-text>
+              <ion-text color="medium">
+               <h3 style="font-size:12px;font-weight: 550;">{{cls.semester+" "+cls.classSection}}</h3>
+              </ion-text>
+             </ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-content>
+    </ng-template>
+  </ion-popover>
+
+  <ion-content color="light" #content>
+  <ion-card class="card" >
+    <ion-item #header button class="card-header" color="darkgrey" lines="none" id="trigger-item"  style="--padding-top:4px;--padding-bottom:4px;">
+      <ion-label>
+       <ion-text >
+         <h2 style="font-size:16px;font-weight: 550;text-align:center;">{{listTitle}}</h2>
+       </ion-text>
+      </ion-label>
+       <ion-icon name="ellipsis-vertical"  style="font-size:20px" slot="end"></ion-icon>
+      </ion-item>
+
+    <ion-list class="list"  [style.margin]="((currentClass.instructorEmail === '') ? '0px' : '25px')" [style.max-height]="getHeight()" *ngIf="isLoggedIn" style="background-color:gainsboro;padding-top:25px;padding-bottom:25px;">
+        <ion-item lines="full"  *ngFor="let student of currentClass.students;index as i;" style="margin:25px;margin-top:0px;" [style.margin-bottom]="(i === (currentClass.students.length-1) ? '0px' : '10px')">   
+         <ion-label>
+          <ion-text color="darkgrey">
+           <h2 style="font-size:17px;font-weight: 550;">{{student.studentName}}</h2>
+          </ion-text>
+          <ion-text color="danger">
+            <h2 #studentid  style="font-size:11px;font-weight: 300;">{{student.studentId}}</h2>
+           </ion-text>
+
+         </ion-label>
+         <ion-select interface="popover">
+          <ion-select-option value="present">Present </ion-select-option>
+          <ion-select-option value="absent">Absent </ion-select-option>
+          <ion-select-option value="excused">Excused </ion-select-option>
+         </ion-select>
+       </ion-item>
+    </ion-list>
+
+  </ion-card>
+  </ion-content>
+</ion-app>

@@ -1,0 +1,19 @@
+.card
+{
+    width: 90vw;
+    z-index: 7;
+    position:fixed;
+    margin-left: calc(50% - 45vw);
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.cardContainer
+{
+    z-index: 6;
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+    opacity: 0.3;
+    position: fixed;
+}

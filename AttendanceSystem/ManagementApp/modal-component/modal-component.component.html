@@ -1,0 +1,28 @@
+<div (click)="fireEvent()" class="cardContainer"></div>
+      
+        <ion-card class="card">
+          <ion-toolbar color="tertiary">
+            <ion-buttons slot="end">
+             <ion-button (click)="fireEvent()"> 
+               <ion-icon name="close"></ion-icon>
+             </ion-button>
+            </ion-buttons>
+          <ion-title >Console</ion-title>
+          </ion-toolbar>
+        
+          <ion-card-content>
+
+            <ion-list  style="min-height:400px;max-height:400px;overflow-y:scroll;padding:0px;background:#f4f5f8;margin:10px;">
+              <ion-item *ngFor="let entry of log" lines="full" color="gainsboro">
+                <ion-text >
+                <p style="font-size:13px;">{{entry}}</p>
+              </ion-text>
+              </ion-item>
+            </ion-list>
+
+      </ion-card-content>
+    </ion-card>
+
+
+
+
