@@ -1,0 +1,46 @@
+<div (click)="fireEvent()" class="cardContainer"></div>
+      
+        <ion-card class="card" >
+          <ion-item color="darkgrey" style="padding:0px">
+            <ion-title slot="start" style="padding:0px">Shopping Bag</ion-title>
+
+          </ion-item>
+        
+          <ion-card-content>
+            <ion-list class="item-list" [style.height]="myHeight" #list>
+              <div *ngFor="let currentItem of contents;index as i;" #content>
+                <ion-item  lines="none" color="medium" style="margin-right:10px;margin-left:10px;">
+ 
+                    <ion-text  >
+                      <h2 style="font-weight:550">{{currentItem.item.title}}</h2>
+                    </ion-text>
+            
+                  <ion-button  slot="end"  fill="clear" (click)="removeItem(currentItem.key,currentItem.item.price)">
+                    <ion-label color="tertiary">remove</ion-label>
+                  </ion-button>
+                </ion-item>
+
+                <ion-item color="gainsboro" lines="none" [style.margin-bottom]="getMargin(i,contents.length)" style="margin-right:10px;margin-left:10px;">
+                  <ion-label>
+                    <ion-text color="darkgrey" *ngFor="let option of currentItem.item.options">
+                      <h3 style="font-weight:500">{{option}}</h3>
+                    </ion-text>
+                    <ion-text color="darkgrey" *ngIf=" currentItem.item.instructions != '' ">
+                      <h3 style="font-weight:500">{{currentItem.item.instructions}}</h3>
+                    </ion-text>
+                    <ion-text color="darkgrey">
+                      <h3 style="font-weight:500">{{"$"+getPrice(currentItem.item.price)}}</h3>
+                    </ion-text>
+                   </ion-label>
+                </ion-item>
+
+              </div>
+            </ion-list>
+
+        <ion-button  color = "danger"  expand="block" (click)="checkout()"  style="margin-top: 17px;">
+          <ion-icon slot="start" name="card-outline" ></ion-icon>
+          <ion-label>{{"order $"+getTotal()}}</ion-label>
+        </ion-button>
+
+      </ion-card-content>
+    </ion-card>

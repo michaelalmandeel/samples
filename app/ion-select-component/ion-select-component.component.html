@@ -1,0 +1,4 @@
+
+  <ion-select [value]="currentItem.defaultItem" [compareWith]="compareWith" #selectedValue (ionChange)="fireEvent(selectedValue.value)" interface="popover" style="min-width:100%">
+    <ion-select-option *ngFor="let item of currentItem.items" [value]="item">{{item.itemName+": $"+item.price}}</ion-select-option>
+  </ion-select>

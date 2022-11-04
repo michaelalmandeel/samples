@@ -1,0 +1,60 @@
+
+  <div class="backgroundImgContainer" *ngIf="false">
+    <img src="https://wallpaperaccess.com/full/1462997.jpg" class="backgroundImg">
+  </div>
+  
+  <app-modal-component [currentItem]="currentItem" (onClose)="closeModal()" *ngIf="showModal"></app-modal-component>
+
+  <ion-content  style="height:97%;top:1.5%;--padding-bottom:0px;--padding-top:0px;"  >
+    
+    <div #grid style="height:100%" style="z-index:3;">
+
+    <div *ngIf="isGallery" class="grid">
+      <div *ngFor="let itemIndex of ( menuItemArray | arraySearchPipe : 'section' : sectionId );" class="grid-item"> 
+        <ion-card color="darkgrey" style="width:320px;height:280px;" >
+         
+          <ion-accordion-group >
+            <ion-accordion toggle-icon="caret-down" >
+              <ion-item slot="header"  color="medium"  >
+                <ion-label style="text-align: center;font-weight: 650;" >{{itemIndex.title}}</ion-label>
+              </ion-item>              
+              <ion-item slot="content"  lines="none" style="--padding-start:0px;--inner-padding-end:0px;" >
+                <div >
+                <ion-text >
+                  <p style="text-align:center;font-weight: 550;padding-left:16px;padding-right:16px;margin-bottom:2px;">{{itemIndex.description}}</p>
+                </ion-text>
+                <ion-item  style="--inner-padding-end:0px" lines="none">
+                <ion-text color="danger">
+                  <p style="font-weight: 550;font-size:14px;margin-left:5px;">{{itemIndex.price}}</p>
+                </ion-text>
+                <ion-button size="large"  slot="end" fill="clear" style="margin:0px" (click)="openModal(itemIndex)">
+                  <ion-icon color="primary" name="bag-add-outline" style="font-weight:650" ></ion-icon>
+                </ion-button>
+                </ion-item>
+
+              </div>
+              </ion-item>
+            </ion-accordion>
+           </ion-accordion-group>
+           <img src={{itemIndex.image}} style="width:320px; height:260px; object-fit:cover;"/>
+        </ion-card>
+      </div>
+    </div>
+
+   <div *ngIf="!isGallery" class="list">
+     <ion-card style="padding:0px;margin:auto;width:320px;margin-bottom:10px;" *ngIf="menuItemArray">
+      <ion-item color="firebrick" style="text-align:center"><ion-title  style="font-weight:550">{{sectionId}}</ion-title></ion-item>
+    <ion-list  #listVar style="padding:0px;margin:0px;" >
+
+      <div *ngFor="let itemIndex of ( menuItemArray | arraySearchPipe : 'section' : sectionId )">
+       <app-menu-list-element [item]="itemIndex" (openModal)="openModal($event)"></app-menu-list-element>
+      </div>
+
+    </ion-list>
+  </ion-card>
+   </div>
+
+  </div>   
+  </ion-content>
+
+

@@ -1,0 +1,43 @@
+<div (click)="fireEvent()" class="cardContainer"></div>
+      
+        <ion-card class="card" >
+          <ion-item color="darkgrey" style="padding:0px">
+            <ion-title slot="start" style="padding:0px">{{currentItem.title}}</ion-title>
+
+          </ion-item>
+        
+          <ion-card-content>
+            <ion-list>
+
+              <ion-item *ngFor="let j of currentItem.mods;index as i;"  style="margin-bottom:15px">
+  
+                <app-ion-select-component [currentItem]="j" (onSelected)="setOptions($event,i)" style="min-width:100%"></app-ion-select-component>
+            </ion-item>
+              <ion-item lines="full"   style="margin-bottom:15px" >
+                <ion-textarea placeholder="Enter special instructions here..." (ionChange)="setInstructions($event)"></ion-textarea>
+              </ion-item>
+
+                  <ion-item lines="none"  style="margin-bottom:2px"  >
+                      <ion-label  slot="start" >{{"Quantity: "+qty}}</ion-label>
+
+                  <ion-button fill="clear" size="large"   (click)="decrementQty()" slot="end" style="margin:0px;">
+                    <ion-icon name="remove"  ></ion-icon>
+                  </ion-button>
+
+                  <ion-button fill="clear" size="large" (click)="incrementQty()" slot="end" style="margin:0px;">
+                    <ion-icon name="add"  ></ion-icon>
+                  </ion-button>
+              </ion-item>
+
+          </ion-list>
+
+        <ion-button  color = "danger"  expand="block" (click)="sendOrder()" >
+          <ion-icon name="add" ></ion-icon>
+        </ion-button>
+
+      </ion-card-content>
+    </ion-card>
+
+
+
+
