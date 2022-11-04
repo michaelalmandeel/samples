@@ -5,13 +5,7 @@ import { getFirestore , collection, getDocs, setDoc, doc } from "firebase/firest
 
 const fireBaseApp = initializeApp(  
   {
-  apiKey: "AIzaSyAmgkmwQ8MtgUGO2ly5coGzsJ5oeubcJJA",
-  authDomain: "shopping-10043.firebaseapp.com",
-  projectId: "shopping-10043",
-  storageBucket: "shopping-10043.appspot.com",
-  messagingSenderId: "883942449110",
-  appId: "1:883942449110:web:e75ff03c0f03f5ca1b0e77",
-  measurementId: "G-Q8HM2EYG75"
+    ***************
   });
 
 const db = getFirestore();
