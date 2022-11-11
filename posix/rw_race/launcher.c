@@ -123,7 +123,9 @@ int main(int argc, char * argv[])
     }
     
     waitpid(producer_pid , &producer_code , 0);
+    
     waitpid(consumer_pid , &consumer_code , 0);
+    
     return 0;
 }
 
