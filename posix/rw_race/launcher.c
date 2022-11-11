@@ -1,4 +1,5 @@
 #include <unistd.h>
+#include <sys/wait.h>
 #include <sys/mman.h>
 #include <sys/stat.h>
 #include <fcntl.h>
@@ -98,24 +99,31 @@ int main(int argc, char * argv[])
     printf("launcher: initialized global data values to shm buffer\n");
 
     int parent_pid = getpid(); // get parent pid
+    
+    int producer_code;
+    int consumer_code;
 
-    fork() ;
-    if( getpid() != parent_pid )
+    int producer_pid = fork() ;
+    
+    if( if producer_pid == 0 )
     { 
         printf("launcher: initiating producer executable...\n");
         arg_array[0] = "producer" ;
         execv( "producer" , arg_array ) ;
     }
     
-    fork() ;
-    if( getpid() != parent_pid )
+   
+    int consumer_pid = fork() ;
+    
+    if( consumer_pid == 0 )
     { 
         printf("launcher: initiating consumer executable...\n");
         arg_array[0] = "consumer" ;
         execv( "consumer" , arg_array ) ;
     }
     
-    while(!done){;}
+    waitpid(producer_pid , &producer_code , 0);
+    waitpid(consumer_pid , &consumer_code , 0);
     return 0;
 }
 
