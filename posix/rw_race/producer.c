@@ -94,6 +94,8 @@ int main(int argc, char* argv[])
         (*((uint16_t *)(shm_ptr+counter_offset)))++ ; // increment count (this is when the race condition can occur)
     }
 
+    exit(0);
+    
     return 0;
 }
 
