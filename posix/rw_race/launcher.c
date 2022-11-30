@@ -122,6 +122,10 @@ int main(int argc, char * argv[])
         execv( "consumer" , arg_array ) ;
     }
     
+    int i = 0;
+    while(arg_array[i] != 0){ free(arg_array[i++]); }
+    free(arg_array[i]); 
+    
     waitpid(producer_pid , &producer_code , 0);
     
     waitpid(consumer_pid , &consumer_code , 0);
