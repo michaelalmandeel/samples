@@ -122,9 +122,7 @@ int main(int argc, char * argv[])
         execv( "consumer" , arg_array ) ;
     }
     
-    int i = 0;
-    while(arg_array[i] != 0){ free(arg_array[i++]); }
-    free(arg_array[i]); 
+   for(int i = 3; i <= 11; i = i+2){free(arg_array[i]);}
     
     waitpid(producer_pid , &producer_code , 0);
     
